@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import './ProductList.css'; 
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 import { addItemToCart } from './CartSlice';
+import './ProductList.css'; 
 
 const ProductList = () => {
 
