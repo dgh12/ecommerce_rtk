@@ -1,12 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeItemFromCart, clearCart, increaseItemQuantity, decreaseItemQuantity } from './CartSlice';
-import './ShoppingCart.css'; 
+import { removeItemFromCart, clearCart, increaseItemQuantity, decreaseItemQuantity } from './CartSlice'; // Assuming you have action creators for increasing and decreasing item quantity
+import './ShoppingCart.css'; // Import CSS file for component-specific styles
 const ShoppingCart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector(state => state.cart.cartItems);
   const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
-  
   const handleRemoveItem = itemId => {
     dispatch(removeItemFromCart(itemId));
   };
@@ -14,12 +13,11 @@ const ShoppingCart = () => {
     dispatch(clearCart());
   };
   const handleIncreaseQuantity = itemId => {
-     dispatch(increaseItemQuantity(itemId));
+    dispatch(increaseItemQuantity(itemId));
   };
   const handleDecreaseQuantity = itemId => {
     dispatch(decreaseItemQuantity(itemId));
   };
-
   return (
     <>
       <div className="shopping-cart">
@@ -29,22 +27,21 @@ const ShoppingCart = () => {
             <li key={item.id} className="cart-item">
               <span>{item.name} - ${item.price}</span>
               <div className="quantity-controls">
-                <button className="quantity-control-btn" onCLick={() => handleDecreaseQuantity(item.id)}>-</button>
-                <span>  {item.quantity}</span>
+                <button className="quantity-control-btn" onClick={() => handleDecreaseQuantity(item.id)}>-</button>
+                <span> {item.quantity}</span>
                 <button className="quantity-control-btn" onClick={() => handleIncreaseQuantity(item.id)}>+</button>
               </div>
               <button className="remove-item-btn" onClick={() => handleRemoveItem(item.id)}>Remove</button>
             </li>
           ))}
         </ul>
+        
       </div>
-      <div>{totalAmount ? 
-      <div>
+      <div>{totalAmount ? <div>
         <button className="clear-cart-btn" onClick={handleClearCart}>Clear Cart</button>
-      <p>  The total amouont is ${totalAmount} </p>
+        <p>The total amount is ${totalAmount}</p>
       </div> : ''}</div>
     </>
   );
 };
-
 export default ShoppingCart;

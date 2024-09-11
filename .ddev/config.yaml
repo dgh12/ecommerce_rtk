@@ -14,10 +14,10 @@ composer_version: "2"
 web_environment: []
 corepack_enable: false
 web_extra_exposed_ports:
-  - name: myWork
-    container_port: 4173
-    https_port: 8443
-    http_port: 8080
+    - name: myWork
+      container_port: 4173
+      http_port: 8080
+      https_port: 8443
 
 # Key features of DDEV's config.yaml:
 
